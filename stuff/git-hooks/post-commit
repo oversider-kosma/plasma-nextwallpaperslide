@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ -e .commiting ]
+    then
+    rm .commiting
+    cd kosma.kde.plasma.nextwallpaperslide/
+    echo "Generating .plasmoid file"
+    zip -r ../plasma-applet-nextwallpaperslide.plasmoid ./*
+    if [ $? -ne 0 ];
+	then
+	echo "Something bad happened while generating .plasmoid file. It wasn't generated and won't be autocommited." 1>&2
+	exit 1
+    fi
+    cd -
+    git add plasma-applet-nextwallpaperslide.plasmoid
+    git commit --amend -C HEAD --no-verify
+fi
+exit
