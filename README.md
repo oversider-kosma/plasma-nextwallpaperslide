@@ -1,6 +1,8 @@
 # plasma-applet-nextwallpaperslide
 
-One-button applet to switch slideshow-moded **KDE Plasma 5** wallpaper to the next slide.
+One-button applet to switch slideshow-moded **KDE Plasma 5** wallpaper to the next slide. 
+
+No settings, no media, no extra bullshit. Nothing except one button saving one extra click for those who like to meditative flipping through their really large collection of wallpapers.
 
 ------------
 ### Installation
