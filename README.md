@@ -25,3 +25,6 @@ $ `kpackagetool5 -t Plasma/Applet --install plasma-applet-nextwallpaperslide.pla
 $ `kpackagetool5 -t Plasma/Applet --remove kosma.kde.plasma.nextwallpaperslide`
 ##### Via GUI:
 ...just delete it from Widget Explorer
+
+
+### [Changelog](CHANGELOG.md)

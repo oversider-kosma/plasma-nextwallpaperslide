@@ -13,33 +13,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
-import QtQuick 2.2
+import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
-
 import "nextwp.js" as JS
 
 Item {
     id: root
 
     Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
-
-    PlasmaCore.DataSource {
-        id: doexec
-        engine: "executable"
-        connectedSources: []
-        onNewData: {
-                var stdout = data["stdout"];
-                exited(sourceName, stdout);
-                disconnectSource(sourceName);
-        }
-
-        function exec(cmd) {
-                connectSource(cmd);
-        }
-        signal exited(string sourceName, string stdout)
-    }
 
     Plasmoid.compactRepresentation: Item {
         id: mainItem
@@ -62,7 +45,7 @@ Item {
                 anchors.fill: parent
                 hoverEnabled: true
                 onReleased: {
-                    JS.doNextWp();
+                    JS.doNextWp(plasmoid);
                 }
 
                 PlasmaCore.ToolTipArea {
