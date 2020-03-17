@@ -8,6 +8,7 @@ No settings, no media, no extra bullshit. Nothing except one button saving one e
 ### Installation
 ##### Via command line:
 $ `wget https://github.com/oversider-kosma/plasma-nextwallpaperslide/raw/master/plasma-applet-nextwallpaperslide.plasmoid`
+
 $ `kpackagetool5 -t Plasma/Applet --install plasma-applet-nextwallpaperslide.plasmoid`
 ##### Via GUI:
 1. Download https://github.com/oversider-kosma/plasma-nextwallpaperslide/raw/master/plasma-applet-nextwallpaperslide.plasmoid
