@@ -24,6 +24,22 @@ Item {
 
     Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
 
+    PlasmaCore.DataSource {
+        id: doexec
+        engine: "executable"
+        connectedSources: []
+        onNewData: {
+                var stdout = data["stdout"];
+                exited(sourceName, stdout);
+                disconnectSource(sourceName);
+        }
+
+        function exec(cmd) {
+                connectSource(cmd);
+        }
+        signal exited(string sourceName, string stdout)
+    }
+
     Plasmoid.compactRepresentation: Item {
         id: mainItem
         Layout.minimumWidth: units.iconSizes.small
