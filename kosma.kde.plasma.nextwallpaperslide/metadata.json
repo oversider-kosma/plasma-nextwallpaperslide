@@ -1,0 +1,23 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "oversider.kosma@gmail.com",
+                "Name": "Kosma"
+            }
+        ],
+        "Category": "Utilities",
+        "Description": "In slideshow mode, switches the wallpaper image to the next slide",
+        "Icon": "preferences-desktop-wallpaper",
+        "Id": "kosma.kde.plasma.nextwallpaperslide",
+        "License": "GPL2",
+        "Name": "Next wallpaper slide",
+        "Version": "3.0",
+        "Website": "https://github.com/oversider-kosma/plasma-nextwallpaperslide"
+    },
+    "X-KDE-ParentApp": "org.kde.slideshow",
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-MainScript": "ui/main.qml"
+}

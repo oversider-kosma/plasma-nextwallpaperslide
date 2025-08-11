@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 by Kosma oversider_kosma@mail.ru>
+ * Copyright (C) 2020 by Kosma oversider.kosma@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -14,24 +14,31 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 import QtQuick 2.5
-import QtQuick.Layouts 1.1
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.plasma5support as Plasma5Support
+import org.kde.plasma.plasmoid
+import org.kde.kirigami as Kirigami
 import "nextwp.js" as JS
 
-Item {
+
+
+PlasmoidItem {
     id: root
+    width: 128
+    height: 128
+    implicitWidth: 128
+    implicitHeight: 128
 
-    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    preferredRepresentation: compactRepresentation
 
-    PlasmaCore.DataSource {
+    Plasma5Support.DataSource {
         id: doexec
         engine: "executable"
         connectedSources: []
-        onNewData: {
+        onNewData: (source, data) => {
                 var stdout = data["stdout"];
-                exited(sourceName, stdout);
-                disconnectSource(sourceName);
+                exited(source, stdout);
+                disconnectSource(source);
         }
 
         function exec(cmd) {
@@ -40,14 +47,8 @@ Item {
         signal exited(string sourceName, string stdout)
     }
 
-    Plasmoid.compactRepresentation: Item {
-        id: mainItem
-        Layout.minimumWidth: units.iconSizes.small
-        Layout.minimumHeight: units.iconSizes.small
 
-        readonly property int minButtonSize: units.iconSizes.small
-
-        PlasmaCore.IconItem {
+    Kirigami.Icon {
             id: icon
             width: parent.height
             height: parent.height
@@ -71,5 +72,5 @@ Item {
                 }
             }
         }
-    }
+
 }

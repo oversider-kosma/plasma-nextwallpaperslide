@@ -3,6 +3,12 @@
 Notable changes to [plasma-applet-nextwallpaperslide](https://github.com/oversider-kosma/plasma-nextwallpaperslide).
 
 
+## [3.0] - 2025-08-11
+
+### Changed
+- Moving from Plasma 5 to Plasma 6
+
+
 
 ## [2.1] - 2020-03-31
 

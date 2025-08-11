@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 by Kosma oversider_kosma@mail.ru>
+ * Copyright (C) 2020 by Kosma oversider.kosma@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -30,16 +30,18 @@ function find_req(object, name, type, depth=0, maxDepth=30, seen=[]) {
     if (seen.indexOf(current) != -1)  {
         return false;
     }
+
     seen.push(current);
 
     for (var prop in current) {
         if (prop != 'parent'){
+
             if (prop == name && typeof current[prop] == type) {
                 return current[prop];
             }
             if (typeof current[prop] == 'object') {
                 if (depth < maxDepth) {
-                    var res = find_req(current[prop], name, type, depth+1, maxDepth, seen);
+                    const res = find_req(current[prop], name, type, depth+1, maxDepth, seen);
                     if (res)  {
                         return res;
                     }
@@ -47,24 +49,32 @@ function find_req(object, name, type, depth=0, maxDepth=30, seen=[]) {
             }
         }
     }
+    seen = [];
     return false;
 }
 
 var cache = {};
 function doNextWp(plasmoid) {
-    if (cache[plasmoid] != undefined) {
-        var nextSlide = cache[plasmoid];
+    try {
+        if (cache[plasmoid] != undefined) {
+            var nextSlide = cache[plasmoid];
+        }
+        else {
+            var nextSlide = find_req(plasmoid, "nextSlide", 'function');
+            cache[plasmoid] = nextSlide;
+        }
     }
-    else {
-        var nextSlide = find_req(plasmoid, "nextSlide", 'function');
-        cache[plasmoid] = nextSlide;
-
+    catch(e) {
+        nextSlide = null;
     }
 
     if (nextSlide) {
         nextSlide();
     }
-    else { // method not found, fallback; TODO: find normal way to do this
+    else {
+        // method nextSlide not found, fallback;
+        // TODO: find normal way to do this
+        // Hack for now: Fake `SlidePaths` change will re-trigger slide choice
         var command = `qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript '
         function get_value(valueName) {
             d = desktops()[0];
